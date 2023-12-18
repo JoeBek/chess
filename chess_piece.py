@@ -3,11 +3,14 @@ import pygame
 
 '''
 This class's purpose is to add functionality to each piece in order to make
-moving them around the board very simple. This is 
+moving them around the board very simple. 
+
+
+this file has been a mess for a while and it will stay that way until I get movement down.
 
 '''
 class Piece:
-    def __init__(self, type, color, x, y):
+    def __init__(self, type, color, pos):
         """
         Initialize a chess piece.
 
@@ -18,28 +21,54 @@ class Piece:
         """
         self.color = color
         self.type = type
-        self.x = x
-        self.y = y
+        self.pos = pos
         self.is_captured = False
         self.selected = False
 
-    def move(self, x, y):
+        # a little polymorphism to keep things readable. Have to update this using some update function
+        # whenever a piece is moved to maintain this 
+        self.x = pos[0]
+        self.y = pos[1]
+
+    def move(self, pos):
         """
         Move the piece to a new position.
 
         :param new_position: Tuple (x, y) representing the new position.
         """
-        self.x = x
-        self.y = y
+        self.pos = pos
 
     def capture(self):
         """
         Mark this piece as captured.
         """
         self.is_captured = True
+        
+        
+        
+        
+        
+        
+    """
+    Getters!
+    
+    """
 
     def get_type(self):
         return self.type
+    
+    def get_color(self):
+        return self.color
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
     # boundary checking will happen in board class

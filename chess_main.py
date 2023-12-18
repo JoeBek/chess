@@ -8,9 +8,37 @@ clock = pygame.time.Clock()
 running = True
 
 
-image = pygame.image.load('C:\\Users\\joe\\PersonalProjects\\chess\\chess_rose.jpg')  # Replace with your image path
+"""
+image path storage
+"""
+pawn_path = "C:\\Users\\joe\\PersonalProjects\\chess\\sprites\\pieces\\arcade_style_chess_pawn_transparent_background.png"
 
-smaller_image = pygame.transform.scale(image, (200, 200))  # Set the desired size
+knight_path = "C:\\Users\\joe\\PersonalProjects\\chess\\sprites\\pieces\\arcade_style_chess_knight_transparent_background.png"
+
+bishop_path = "C:\\Users\\joe\\PersonalProjects\\chess\\sprites\\pieces\\arcade_style_chess_bishop_transparent_background.png"
+
+rook_path = "C:\\Users\\joe\\PersonalProjects\\chess\\sprites\\pieces\\arcade_style_chess_rook_transparent_background.png"
+
+queen_path = "C:\\Users\\joe\\PersonalProjects\\chess\\sprites\\pieces\\transparent_arcade_style_chess_queen.png"
+
+king_path = "C:\\Users\\joe\\PersonalProjects\\chess\\sprites\\pieces\\arcade_style_chess_king_transparent_background.png"
+
+
+
+
+"""
+end image path storage
+"""
+
+piece_images = {"Pawn": pawn_path, "Knight": knight_path, "Bishop": bishop_path, "Rook": rook_path,
+                "King": king_path, "Queen": queen_path}
+
+
+
+
+image = pygame.image.load("C:\\Users\\joe\\PersonalProjects\\chess\\sprites\\otherboard2.png")  # Replace with your image path
+
+smaller_image = pygame.transform.scale(image, (700, 700))  # Set the desired size
 
 
 while running:
@@ -21,11 +49,16 @@ while running:
             running = False
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
+    screen.fill("black")
 
-    screen.blit(smaller_image, (10, 10))
+    screen.blit(smaller_image, (300, 10))
 
     # RENDER YOUR GAME HERE
+    
+    
+
+
+
 
     # flip() the display to put your work on screen
     pygame.display.flip()
@@ -34,3 +67,10 @@ while running:
 
 pygame.quit()
 
+
+# resolve this garbage
+
+def draw_pieces(screen, piece_positions):
+    for position, piece in piece_positions.items():
+        x, y = position
+        screen.blit(piece_images[piece.get_type()], (x*100, y*100))
